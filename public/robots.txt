@@ -1,0 +1,3 @@
+# HRnet — Wealth Health internal HR application
+User-agent: *
+Allow: /
