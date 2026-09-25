@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @source "../../Modal";
-@source "../node_modules/wealthhealth-react-modal";
+@source "../node_modules/wealthhealth-react-modal-oc";
 
 body {
   margin: 0;

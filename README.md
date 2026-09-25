@@ -9,7 +9,7 @@ Conversion de l’ancienne app jQuery vers une stack **100 % React**.
 - React Router
 - Redux Toolkit + localStorage
 - Tailwind CSS v4
-- Modale custom : `[wealthhealth-react-modal](../Modal)` (package npm)
+- Modale custom : [`wealthhealth-react-modal-oc`](https://www.npmjs.com/package/wealthhealth-react-modal-oc)
 
 ## Démarrage
 
@@ -47,13 +47,14 @@ Au submit du formulaire → `dispatch(addEmployee(...))` → sync localStorage �
 
 ## Utiliser la modale
 
-Package : `[wealthhealth-react-modal](../Modal)`
-Doc complète : `[../Modal/README.md](../Modal/README.md)`
+Package : [`wealthhealth-react-modal-oc`](https://www.npmjs.com/package/wealthhealth-react-modal-oc)  
+Repos : [Giabilan/P14_WealthHealth-react-modal-component](https://github.com/Giabilan/P14_WealthHealth-react-modal-component)  
+Doc complète : [`../Modal/README.md`](../Modal/README.md)
 
 ### Import
 
 ```jsx
-import Modal from "wealthhealth-react-modal";
+import Modal from "wealthhealth-react-modal-oc";
 ```
 
 
@@ -113,8 +114,8 @@ frontend/
 
 
 
-## Suite prévue
+## Liens
 
-- Remplacer date pickers / dropdowns / tableau (libs ou composants)
-- Audits Lighthouse (ancienne app jQuery vs nouvelle app React)
+- App GitHub : [P14_WealthHealth-front-end](https://github.com/Giabilan/P14_WealthHealth-front-end)
+- Audits Lighthouse : [`lighthouse/`](./lighthouse/) + [`SYNTHESE_PERFORMANCE.md`](./lighthouse/SYNTHESE_PERFORMANCE.md)
 

@@ -18,7 +18,7 @@
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.18.2",
     "tailwindcss": "^4.3.3",
-    "wealthhealth-react-modal": "file:../Modal"
+    "wealthhealth-react-modal-oc": "file:../Modal"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

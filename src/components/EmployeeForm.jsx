@@ -6,7 +6,7 @@ import { departments } from "../data/departments";
 import { addEmployee } from "../store/employeesSlice";
 import { validateEmployeeForm } from "../utils/validateEmployeeForm";
 import FormField from "./FormField";
-import Modal from "wealthhealth-react-modal";
+import Modal from "wealthhealth-react-modal-oc";
 
 const initialFormState = {
   firstName: "",

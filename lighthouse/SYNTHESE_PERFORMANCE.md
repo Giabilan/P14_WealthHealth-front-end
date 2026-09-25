@@ -1,7 +1,7 @@
 # Rapport de performance Lighthouse — HRnet jQuery vs React
 
 **Projet :** OpenClassrooms — Wealth Health / HRnet  
-**Date :** 18 septembre 2026  
+**Date :** 25 septembre 2026  
 **Outil :** Google Chrome Lighthouse 13.4.1 (rapport Expanded)  
 **Profil :** Desktop  
 
@@ -26,7 +26,7 @@ Les pages auditées sont :
 | Nouvelle application | Dossier `frontend/` — build de production puis **`npm run preview`** (`http://localhost:4173`) |
 | Jeu de données | 20 employés enregistrés dans `localStorage` |
 | Conditions | Même type d’appareil (Desktop), audits Expanded |
-| Livrables joints | PDF Lighthouse dans `docs/lighthouse/jquery/` et `docs/lighthouse/react/` |
+| Livrables joints | PDF + **JSON** Lighthouse dans `lighthouse/jquery/` et `lighthouse/react/` |
 
 Conformément aux consignes du projet, l’application React n’a **pas** été auditée en mode développement (`npm run dev`), afin d’obtenir des scores représentatifs d’un environnement de production.
 
@@ -52,6 +52,8 @@ Conformément aux consignes du projet, l’application React n’a **pas** été
 
 ## 4. Résultats
 
+*Valeurs extraites des rapports JSON du 25 septembre 2026.*
+
 ### 4.1 Create Employee
 
 | Métrique | jQuery | React |
@@ -60,12 +62,12 @@ Conformément aux consignes du projet, l’application React n’a **pas** été
 | Accessibility | 89 | **100** |
 | Best Practices | 96 | **100** |
 | SEO | 90 | **100** |
-| First Contentful Paint (FCP) | 0,7 s | **0,4 s** |
-| Largest Contentful Paint (LCP) | 0,7 s | **0,4 s** |
+| First Contentful Paint (FCP) | 0,6 s | **0,4 s** |
+| Largest Contentful Paint (LCP) | 0,6 s | **0,4 s** |
 | Total Blocking Time (TBT) | 0 ms | 0 ms |
-| Cumulative Layout Shift (CLS) | 0,007 | **0** |
-| Speed Index | 0,7 s | **0,4 s** |
-| Poids réseau total | 261 KiB | **94 KiB** |
+| Cumulative Layout Shift (CLS) | 0,005 | **0** |
+| Speed Index | 0,6 s | **0,4 s** |
+| Poids réseau total | 260 KiB | **94 KiB** |
 
 ### 4.2 Employee List
 
@@ -75,11 +77,11 @@ Conformément aux consignes du projet, l’application React n’a **pas** été
 | Accessibility | 94 | **100** |
 | Best Practices | 96 | **100** |
 | SEO | 80 | **100** |
-| First Contentful Paint (FCP) | 0,5 s | **0,4 s** |
+| First Contentful Paint (FCP) | 0,5 s | 0,5 s |
 | Largest Contentful Paint (LCP) | 0,5 s | 0,5 s |
 | Total Blocking Time (TBT) | 0 ms | 0 ms |
 | Cumulative Layout Shift (CLS) | 0 | 0 |
-| Speed Index | 0,5 s | **0,4 s** |
+| Speed Index | 0,5 s | 0,5 s |
 | Poids réseau total | **65 KiB** | 126 KiB |
 
 ---
@@ -95,14 +97,16 @@ La version jQuery reste à 100 en Performance, mais est inférieure sur Accessib
 
 React est clairement plus performant sur cette page :
 
-- FCP, LCP et Speed Index passent de **0,7 s à 0,4 s**
-- le poids réseau passe de **261 KiB à 94 KiB** (−64 %)
+- FCP, LCP et Speed Index passent de **0,6 s à 0,4 s**
+- le poids réseau passe de **260 KiB à 94 KiB** (−64 %)
+- le CLS passe de 0,005 à **0**
 
 Cette différence s’explique principalement par la suppression des plugins jQuery et des CDN associés (jQuery UI, datetimepicker, jquery-modal, etc.), remplacés par un bundle Vite first-party et une modale React.
 
 ### Employee List
 
-React reste devant sur les scores Lighthouse, le FCP et le Speed Index.  
+React reste devant sur les scores Lighthouse (Accessibility, Best Practices, SEO à 100).  
+Les métriques de timing (FCP, LCP, Speed Index) sont **équivalentes** à 0,5 s des deux côtés en Desktop local.  
 Le poids réseau de la page liste est en revanche plus élevé (126 KiB vs 65 KiB) : la version jQuery ne charge que jQuery + DataTables, alors que la version React est une SPA qui charge React, le routeur, Redux, puis TanStack Table pour le tableau.
 
 Ce surcoût est un compromis classique d’architecture SPA. Il est compensé par une meilleure accessibilité, un SEO conforme, et un comportement de tableau plus maîtrisé (filtre, tri, pagination en React, sans plugin jQuery DataTables).
@@ -133,7 +137,7 @@ La migration répond aux problèmes signalés sur l’ancienne application :
 La version React d’HRnet améliore globalement la qualité et les performances mesurées par Lighthouse :
 
 - **Create Employee** : nette amélioration (vitesse et poids)
-- **Employee List** : meilleurs scores Lighthouse et FCP / Speed Index, avec un poids SPA plus élevé que la page jQuery isolée
+- **Employee List** : meilleurs scores Lighthouse (A11y / BP / SEO), timings équivalents, avec un poids SPA plus élevé que la page jQuery isolée
 - **Accessibilité, bonnes pratiques et SEO** : React à **100/100** sur les deux pages
 
 La conversion jQuery → React atteint donc l’objectif du projet : une application plus moderne, mieux structurée, sans jQuery, avec des gains quantifiables sur les indicateurs clés — notamment sur la page de création d’employé, la plus chargée en plugins dans l’ancienne version.
@@ -146,10 +150,19 @@ La conversion jQuery → React atteint donc l’objectif du projet : une applica
 
 | Page | Perf | A11y | BP | SEO | Poids |
 |------|------|------|----|-----|-------|
-| jQuery — Create Employee | 100 | 89 | 96 | 90 | 261 KiB |
+| jQuery — Create Employee | 100 | 89 | 96 | 90 | 260 KiB |
 | React — Create Employee | 100 | 100 | 100 | 100 | 94 KiB |
 | jQuery — Employee List | 100 | 94 | 96 | 80 | 65 KiB |
 | React — Employee List | 100 | 100 | 100 | 100 | 126 KiB |
+
+### Rapports JSON (critère OC)
+
+Rechargeables dans le [Lighthouse Report Viewer](https://googlechrome.github.io/lighthouse/viewer/) :
+
+- [`jquery/create-employee-desktop.json`](./jquery/create-employee-desktop.json)
+- [`jquery/employee-list-desktop.json`](./jquery/employee-list-desktop.json)
+- [`react/create-employee-desktop.json`](./react/create-employee-desktop.json)
+- [`react/employee-list-desktop.json`](./react/employee-list-desktop.json)
 
 ### Rapports PDF
 
