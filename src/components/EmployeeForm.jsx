@@ -53,6 +53,7 @@ const EmployeeForm = () => {
     setIsModalOpen(false);
   };
 
+  // envoies l’employé à Redux
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -97,11 +98,7 @@ const EmployeeForm = () => {
         className="flex w-full flex-col items-stretch"
         noValidate
       >
-        <FormField
-          id="first-name"
-          label="First Name"
-          error={errors.firstName}
-        >
+        <FormField id="first-name" label="First Name" error={errors.firstName}>
           <input
             id="first-name"
             name="firstName"
@@ -228,11 +225,7 @@ const EmployeeForm = () => {
           </FormField>
         </fieldset>
 
-        <FormField
-          id="department"
-          label="Department"
-          error={errors.department}
-        >
+        <FormField id="department" label="Department" error={errors.department}>
           <select
             id="department"
             name="department"

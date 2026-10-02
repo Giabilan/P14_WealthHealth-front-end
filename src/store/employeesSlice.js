@@ -6,6 +6,7 @@ import {
 
 const employeesSlice = createSlice({
   name: "employees",
+  // au rechargement de la page
   initialState: {
     list: loadEmployeesFromStorage(),
   },
@@ -14,6 +15,7 @@ const employeesSlice = createSlice({
      * Ajoute un employé au store et synchronise localStorage.
      * @param {object} action.payload - Données de l'employé à enregistrer.
      */
+    // redux met à jour le state et sauvegarde
     addEmployee: (state, action) => {
       const nextList = [...state.list, action.payload];
       state.list = nextList;
